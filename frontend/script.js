@@ -15,6 +15,30 @@ document.addEventListener('DOMContentLoaded', () => {
     this.style.height = (this.scrollHeight) + 'px';
   });
 
+  // LUXURY SCROLL EFFECT: Hero fade & Navbar transition
+  const $heroContent = document.querySelector('.hero-content');
+  const $heroVideo = document.querySelector('.hero-video');
+  const $heroOverlay = document.querySelector('.hero-overlay');
+  const $navbar = document.querySelector('.navbar');
+
+  window.addEventListener('scroll', () => {
+    const scrollPos = window.scrollY;
+    const viewportHeight = window.innerHeight;
+    
+    // Calculate opacity (fade out over 80% of scroll)
+    const opacity = Math.max(0, 1 - (scrollPos / (viewportHeight * 0.8)));
+    
+    if ($heroContent) $heroContent.style.opacity = opacity;
+    if ($heroVideo) $heroVideo.style.opacity = opacity;
+    
+    // Navbar color transition only when hitting solid parchment
+    if (scrollPos >= viewportHeight - 10) {
+      $navbar.classList.add('scrolled');
+    } else {
+      $navbar.classList.remove('scrolled');
+    }
+  });
+
   async function handleTransform() {
     const text = $promptInput.value.trim();
     if (!text) {

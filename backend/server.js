@@ -20,13 +20,13 @@ if (process.env.GEMINI_API_KEY) {
 }
 
 app.post('/poetify', async (req, res) => {
+  const { text, style } = req.body;
+
+  if (!text) {
+    return res.status(400).json({ error: 'Text is required' });
+  }
+
   try {
-    const { text, style } = req.body;
-
-    if (!text) {
-      return res.status(400).json({ error: 'Text is required' });
-    }
-
     if (!genAI) {
       // Mock mode if no API key
       const mockPoem = `In shadows deep where echoes play,
@@ -37,33 +37,68 @@ To light the corners of this room.`;
       return res.json({ result: mockPoem });
     }
 
-    // Basic Gemini config
-    const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
+    // Try multiple models in case one is not available
+    const modelsToTry = [
+      'gemini-robotics-er-1.5-preview',
+      'gemini-2.0-flash', 
+      'gemini-2.0-flash-latest', 
+      'gemini-1.5-flash', 
+      'gemini-1.5-flash-latest', 
+      'gemini-pro'
+    ];
+    let generatedText = null;
+    let lastError = null;
 
-    let systemInstruction = "";
-    if (style === 'romantic') {
-      systemInstruction = "You are a classic romantic poet like Keats or Byron. Transform the user's text into a lush, emotional, and expressive poem.";
-    } else if (style === 'dark') {
-      systemInstruction = "You are a gothic poet like Edgar Allan Poe. Transform the user's text into a melancholic, mysterious, and dark poem.";
-    } else if (style === 'philosophical') {
-      systemInstruction = "You are a philosophical poet like Rilke or Tagore. Transform the user's text into a thoughtful, existential, and deep poem.";
-    } else if (style === 'motivational') {
-      systemInstruction = "You are an inspiring, energetic poet. Transform the user's text into an uplifting, hopeful, and motivational poem.";
-    } else {
-      systemInstruction = "You are a classic poet. Transform the user's text into a beautiful poem.";
+    for (const modelName of modelsToTry) {
+      try {
+        console.log(`Tentando modelo: ${modelName}...`);
+        
+        let instructions = "You must always respond in the same language as the user. Match the core sentiment of the user's input. CRITICAL CONSTRAINT: You must NEVER generate a poem longer than 12 lines or exceeding 400 characters in total length. The physical UI container is strictly bounded and longer text will break the layout. Keep the poem extremely concise and impactful. Follow this style: ";
+        
+        if (style === 'romantic') {
+          instructions += "You are a classic romantic poet like Keats or Byron. Transform the user's text into a lush, emotional, and expressive poem.";
+        } else if (style === 'dark') {
+          instructions += "You are a gothic poet like Edgar Allan Poe. Transform the user's text into a melancholic, mysterious, and dark poem.";
+        } else if (style === 'philosophical') {
+          instructions += "You are a philosophical poet like Rilke or Tagore. Transform the user's text into a thoughtful, existential, and deep poem.";
+        } else if (style === 'motivational') {
+          instructions += "You are an inspiring, energetic poet. Transform the user's text into an uplifting, hopeful, and motivational poem.";
+        } else {
+          instructions += "You are a classic poet. Transform the user's text into a beautiful poem.";
+        }
+
+        // Using the official systemInstruction parameter provides much stronger adherence
+        const model = genAI.getGenerativeModel({ 
+          model: modelName,
+          systemInstruction: instructions 
+        });
+        
+        const prompt = `Text to transform: "${text}"\n\nRemember: respond ONLY with the poem text. Output in the user's language.`;
+
+        const result = await model.generateContent(prompt);
+        const response = await result.response;
+        generatedText = response.text();
+        
+        if (generatedText) {
+          console.log(`Sucesso com o modelo: ${modelName}`);
+          break;
+        }
+      } catch (e) {
+        console.error(`Erro com o modelo ${modelName}:`, e.message);
+        lastError = e;
+      }
     }
-    
-    const prompt = `${systemInstruction}\n\nTransform the following text into a poem. Output ONLY the poem, with no introductions or explanations.\n\nText: "${text}"`;
 
-    const result = await model.generateContent(prompt);
-    const response = await result.response;
-    const generatedText = response.text();
-
-    res.json({ result: generatedText.trim() });
+    if (generatedText) {
+      res.json({ result: generatedText.trim() });
+    } else {
+      throw lastError || new Error('All models failed');
+    }
   } catch (error) {
-    console.error('Error generating poetry:', error);
+    console.error('--- DETALHES DO ERRO GEMINI ---');
+    console.error('Mensagem:', error.message);
     
-    // Provide a fallback poem in case of API failure so the UI doesn't look broken
+    // Provide a fallback poem in case of API failure
     const fallbackPoem = `Though the network falters and logic bends,
 The spirit of poetry never ends.
 Your thought of '${text}' remains profound,

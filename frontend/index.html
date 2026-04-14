@@ -4,29 +4,40 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Poetify — Transform thoughts into poetry</title>
+  <!-- Luxurious Typography: Serif for Titles, Sans for UI -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="page-wrapper">
-    <nav class="navbar">
-      <div class="container navbar-container">
-        <a href="#" class="logo">Poetify.</a>
-      </div>
-    </nav>
+    <section class="hero-viewport">
+      <video class="hero-video" autoplay muted loop playsinline>
+        <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260406_133058_0504132a-0cf3-4450-a370-8ea3b05c95d4.mp4" type="video/mp4">
+      </video>
+      <div class="hero-overlay"></div>
+      
+      <nav class="navbar transparent">
+        <div class="container navbar-container">
+          <a href="#" class="logo">Poetify.</a>
+        </div>
+      </nav>
 
-    <main>
-      <section class="hero">
+      <div class="hero-content">
         <div class="container">
           <h1 class="title-display hero-title">Transform thoughts into poetry.</h1>
           <p class="body-large hero-subtitle">A literary companion that reimagines your everyday words in classic poetic styles.</p>
         </div>
-      </section>
+      </div>
+    </section>
 
+    <main id="app">
       <section class="app-container">
         <div class="container app-grid">
           
           <!-- Input Card -->
-          <div class="card input-section">
+          <div class="card input-section glass">
             <div class="form-group">
               <label for="promptInput" class="form-label">YOUR WORDS</label>
               <textarea id="promptInput" class="poetify-input" placeholder="Write something ordinary, like 'I missed my train today and it rained'..." spellcheck="false"></textarea>
@@ -82,7 +93,7 @@
           </div>
 
           <!-- Output Card -->
-          <div class="card output-card">
+          <div class="card output-card glass">
             <div class="output-header">
               <span class="output-label">The Poetry</span>
               <button id="copyBtn" class="btn btn-secondary btn-icon" aria-label="Copy to clipboard" disabled>
@@ -103,12 +114,12 @@
         </div>
       </section>
 
-      <section class="dark-section">
+      <footer class="dark-section">
         <div class="container">
           <h2 class="title-card">The Art of Words</h2>
           <p>Poetify explores the delicate space between raw human emotion and structured literary forms. By combining everyday language with the cadence of classic poetry, we invite a moment of quiet reflection into your digital day.</p>
         </div>
-      </section>
+      </footer>
     </main>
   </div>
 
