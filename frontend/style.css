@@ -385,7 +385,7 @@ textarea.poetify-input:focus {
 .poetry-container {
   flex: 1;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-start;
   overflow-y: auto;
 }
