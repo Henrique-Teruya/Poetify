@@ -33,7 +33,7 @@ Poetify is a simple AI-powered web app that transforms everyday text into expres
 
 ## 📂 Project Structure
 
-
+```bash
 poetify/
 ├── frontend/
 │ ├── index.html
@@ -43,7 +43,7 @@ poetify/
 ├── backend/
 │ ├── server.js
 │ └── .env
-
+```
 
 ---
 
