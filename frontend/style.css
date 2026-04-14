@@ -45,7 +45,7 @@ body {
 .hero-viewport {
   position: relative;
   width: 100%;
-  height: 100vh;
+  height: 100dvh;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -97,7 +97,7 @@ body {
 /* TITLES - HIGH END SERIF */
 .title-display {
   font-family: var(--font-serif);
-  font-size: clamp(3.5rem, 8vw, 6rem);
+  font-size: clamp(2.5rem, 8vw, 6rem);
   font-weight: 300; /* Extra Thin Serif */
   line-height: 1.0;
   letter-spacing: -0.01em;
@@ -192,14 +192,23 @@ main#app {
 
 /* Base resets */
 .app-container {
-  padding-top: 60px;
+  padding-top: 40px;
 }
 
 .container {
   width: 100%;
   max-width: 1100px;
   margin: 0 auto;
-  padding: 0 40px;
+  padding: 0 20px;
+}
+
+@media (min-width: 768px) {
+  .app-container {
+    padding-top: 60px;
+  }
+  .container {
+    padding: 0 40px;
+  }
 }
 
 /* GRID */
@@ -225,8 +234,14 @@ main#app {
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(240, 238, 230, 0.8);
   border-radius: 20px;
-  padding: 48px;
+  padding: 32px 24px;
   box-shadow: rgba(0, 0, 0, 0.02) 0px 20px 60px;
+}
+
+@media (min-width: 768px) {
+  .card {
+    padding: 48px;
+  }
 }
 
 /* FORMS */
@@ -257,7 +272,7 @@ textarea.poetify-input {
   background-color: rgba(255, 255, 255, 0.5);
   color: var(--anthropic-black);
   font-family: var(--font-serif);
-  font-size: 1.3rem;
+  font-size: clamp(1.1rem, 3vw, 1.3rem);
   line-height: 1.6;
   resize: vertical;
   min-height: 220px;
@@ -275,8 +290,14 @@ textarea.poetify-input:focus {
 /* STYLE PICKER */
 .style-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
   gap: 12px;
+}
+
+@media (min-width: 600px) {
+  .style-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 .style-option {
@@ -392,7 +413,7 @@ textarea.poetify-input:focus {
 
 .poetry-output {
   font-family: var(--font-serif);
-  font-size: 1.4rem;
+  font-size: clamp(1.2rem, 3.5vw, 1.4rem);
   font-weight: 400;
   line-height: 1.6;
   white-space: pre-wrap;
@@ -418,7 +439,7 @@ textarea.poetify-input:focus {
 
 .title-card {
   font-family: var(--font-serif);
-  font-size: 3rem;
+  font-size: clamp(2rem, 5vw, 3rem);
   font-weight: 300;
   color: #fff;
   margin-bottom: 24px;
