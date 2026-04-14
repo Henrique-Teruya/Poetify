@@ -1,0 +1,27 @@
+{
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1"
+  },
+  "name": "poetify",
+  "version": "1.0.0",
+  "description": "Poetify is a simple AI-powered web app that transforms everyday text into expressive poetry. With a clean Apple-inspired interface and smooth animations, users can choose styles like romantic, dark, or philosophical and instantly generate poetic versions of their words.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Henrique-Teruya/Poetify.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Henrique-Teruya/Poetify/issues"
+  },
+  "homepage": "https://github.com/Henrique-Teruya/Poetify#readme"
+}
