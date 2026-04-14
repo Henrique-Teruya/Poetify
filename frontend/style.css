@@ -262,7 +262,7 @@ textarea.poetify-input {
   resize: vertical;
   min-height: 220px;
   transition: all 0.3s ease;
-  text-align: center;
+  text-align: left;
 }
 
 textarea.poetify-input:focus {
@@ -386,7 +386,7 @@ textarea.poetify-input:focus {
   flex: 1;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   overflow-y: auto;
 }
 
@@ -397,7 +397,7 @@ textarea.poetify-input:focus {
   line-height: 1.6;
   white-space: pre-wrap;
   color: var(--anthropic-black);
-  text-align: center;
+  text-align: left;
   width: 100%;
 }
 
