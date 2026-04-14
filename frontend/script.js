@@ -69,7 +69,12 @@ document.addEventListener('DOMContentLoaded', () => {
     $poetryOutput.innerHTML = '<span class="cursor"></span>';
 
     try {
-      const response = await fetch('/poetify', {
+      // Determine API URL based on environment
+      const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+      // URL de produção do Render configurada
+      const API_URL = isLocal ? 'http://localhost:8080/poetify' : 'https://poetify.onrender.com/poetify';
+
+      const response = await fetch(API_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
