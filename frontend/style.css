@@ -480,3 +480,36 @@ textarea.poetify-input:focus {
 
 .loading .btn-text { display: none; }
 .loading .loader { display: flex; }
+
+/* RESPONSIVE ADJUSTMENTS FOR SMALLER SCREENS */
+@media (max-width: 768px) {
+  .card {
+    padding: 24px 20px;
+  }
+
+  textarea.poetify-input {
+    padding: 16px;
+    min-height: 160px;
+  }
+
+  .btn {
+    padding: 16px 24px;
+  }
+
+  .app-grid {
+    padding-bottom: 60px;
+    gap: 32px;
+  }
+
+  .dark-section {
+    padding: 60px 0;
+  }
+
+  .form-group {
+    margin-bottom: 24px;
+  }
+
+  .style-name {
+    font-size: 1.2rem;
+  }
+}
