@@ -290,14 +290,8 @@ textarea.poetify-input:focus {
 /* STYLE PICKER */
 .style-grid {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(2, 1fr);
   gap: 12px;
-}
-
-@media (min-width: 600px) {
-  .style-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
 }
 
 .style-option {
@@ -510,6 +504,14 @@ textarea.poetify-input:focus {
   }
 
   .style-name {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
+  }
+
+  .style-card {
+    padding: 12px;
+  }
+
+  .style-desc {
+    font-size: 0.7rem;
   }
 }
