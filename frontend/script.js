@@ -3,11 +3,29 @@ document.addEventListener('DOMContentLoaded', () => {
   const $transformBtn = document.getElementById('transformBtn');
   const $poetryOutput = document.getElementById('poetryOutput');
   const $copyBtn = document.getElementById('copyBtn');
+  const $navToggle = document.querySelector('.nav-toggle');
+  const $navbar = document.querySelector('.navbar');
   
   let isGenerating = false;
 
   $transformBtn.addEventListener('click', handleTransform);
   $copyBtn.addEventListener('click', handleCopy);
+
+  // Mobile menu toggle
+  if ($navToggle) {
+    $navToggle.addEventListener('click', () => {
+      $navToggle.classList.toggle('active');
+      $navbar.classList.toggle('mobile-open');
+    });
+
+    // Close menu when clicking a link
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        $navToggle.classList.remove('active');
+        $navbar.classList.remove('mobile-open');
+      });
+    });
+  }
 
   // Auto-resize textarea
   $promptInput.addEventListener('input', function() {
