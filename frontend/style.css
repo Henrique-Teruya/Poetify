@@ -1,27 +1,31 @@
-/* LUXURY DESIGN SYSTEM */
+/* LUXURY DESIGN SYSTEM - Obsidian Assembly Inspired */
 :root {
-  /* Colors - Primary */
-  --anthropic-black: #141413;
-  --terracotta: #c96442;
-  --coral: #d97757;
+  /* Colors - Primary (Obsidian Dark) */
+  --obsidian-dark: #151415;
+  --soft-light: #F1EADE;
   
-  /* Colors - Surface & Background */
-  --parchment: #f5f4ed;
-  --ivory: #faf9f5;
+  /* Colors - Accent (Dusty Rose - floral) */
+  --dusty-rose: #C2707A;
+  --rose-hover: #A85D67;
+  --muted-lavender: #DED4E6;
+  
+  /* Colors - Surface & Background - Muted for accessibility */
+  --parchment: #E8E4DB;
+  --ivory: #F5F2EB;
   --pure-white: #ffffff;
-  --warm-sand: #e8e6dc;
-  --dark-surface: #30302e;
+  --warm-sand: #D9D5CB;
+  --dark-surface: #1E1E1F;
   
-  /* Colors - Neutrals & Text */
-  --charcoal-warm: #4d4c48;
-  --olive-gray: #5e5d59;
-  --stone-gray: #87867f;
-  --dark-warm: #3d3d3a;
-  --warm-silver: #b0aea5;
+  /* Colors - Neutrals & Text - Darker for better contrast */
+  --charcoal-warm: #1A1A18;
+  --olive-gray: #3A3A37;
+  --stone-gray: #5A5A57;
+  --dark-warm: #0F0F0E;
+  --warm-silver: #9A9A95;
   
   /* Colors - Semantic & Accent */
-  --border-cream: #f0eee6;
-  --border-warm: #e8e6dc;
+  --border-cream: #C5C1B7;
+  --border-warm: #B8B4AA;
   
   --font-serif: 'Cormorant Garamond', serif;
   --font-sans: 'Outfit', sans-serif;
@@ -35,10 +39,14 @@ body {
   margin: 0;
   padding: 0;
   background-color: var(--dark-surface);
-  color: var(--anthropic-black);
+  color: var(--dark-warm);
   font-family: var(--font-sans);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 /* HERO VIEWPORT - NATURAL SCROLL */
@@ -129,10 +137,10 @@ body {
 
 .navbar.scrolled {
   padding: 20px 0;
-  background: rgba(250, 249, 245, 0.95);
+  background: rgba(240, 237, 229, 0.98);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(20, 20, 19, 0.05);
+  border-bottom: 1px solid var(--border-cream);
 }
 
 .logo {
@@ -146,7 +154,8 @@ body {
 }
 
 .navbar.scrolled .logo {
-  color: var(--anthropic-black);
+  color: var(--dark-warm);
+  font-weight: 600;
 }
 
 /* SCROLL INDICATOR */
@@ -229,13 +238,13 @@ main#app {
 
 /* CARDS - GLASSMORPHISM */
 .card {
-  background: rgba(250, 249, 245, 0.9);
+  background: rgba(240, 237, 229, 0.95);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(240, 238, 230, 0.8);
+  border: 1px solid var(--border-cream);
   border-radius: 20px;
   padding: 32px 24px;
-  box-shadow: rgba(0, 0, 0, 0.02) 0px 20px 60px;
+  box-shadow: rgba(0, 0, 0, 0.03) 0px 12px 40px;
 }
 
 @media (min-width: 768px) {
@@ -256,10 +265,11 @@ main#app {
 
 .form-label {
   display: block;
-  font-size: 0.75rem;
+  font-size: 0.8rem;
+  font-weight: 600;
   font-style: italic;
   font-family: var(--font-serif);
-  color: var(--stone-gray);
+  color: var(--dark-warm);
   letter-spacing: 0.1em;
   margin-bottom: 14px;
 }
@@ -269,10 +279,11 @@ textarea.poetify-input {
   padding: 24px;
   border: 1px solid var(--border-warm);
   border-radius: 12px;
-  background-color: rgba(255, 255, 255, 0.5);
-  color: var(--anthropic-black);
+  background-color: var(--pure-white);
+  color: var(--dark-warm);
   font-family: var(--font-serif);
   font-size: clamp(1.1rem, 3vw, 1.3rem);
+  font-weight: 500;
   line-height: 1.6;
   resize: vertical;
   min-height: 220px;
@@ -282,9 +293,9 @@ textarea.poetify-input {
 
 textarea.poetify-input:focus {
   outline: none;
-  border-color: var(--terracotta);
-  background-color: #fff;
-  box-shadow: 0 0 0 1px var(--terracotta);
+  border-color: var(--dusty-rose);
+  background-color: var(--pure-white);
+  box-shadow: 0 0 0 2px var(--dusty-rose);
 }
 
 /* STYLE PICKER */
@@ -310,10 +321,11 @@ textarea.poetify-input:focus {
 
 .style-card {
   padding: 16px;
-  background: rgba(255, 255, 255, 0.6);
+  background: var(--ivory);
   border: 1px solid var(--border-cream);
   border-radius: 10px;
   transition: all 0.2s ease;
+  color: var(--dark-warm);
 }
 
 .style-option:hover .style-card {
@@ -321,25 +333,27 @@ textarea.poetify-input:focus {
 }
 
 .style-option input[type="radio"]:checked + .style-card {
-  background: var(--terracotta);
-  border-color: var(--terracotta);
-  color: #fff;
+  background: var(--dusty-rose);
+  border-color: var(--dusty-rose);
+  color: var(--pure-white);
 }
 
 .style-name {
   display: block;
   font-family: var(--font-serif);
   font-size: 1.4rem;
+  font-weight: 600;
   font-style: italic;
   margin-bottom: 4px;
+  color: var(--dark-warm);
 }
 
 .style-desc {
   display: block;
   font-family: var(--font-sans);
-  font-weight: 300;
-  font-size: 0.8rem;
-  opacity: 0.7;
+  font-weight: 500;
+  font-size: 0.85rem;
+  color: var(--charcoal-warm);
 }
 
 /* BUTTONS */
@@ -360,27 +374,29 @@ textarea.poetify-input:focus {
 }
 
 .btn-primary {
-  background-color: var(--terracotta);
+  background-color: var(--dusty-rose);
   color: #fff;
   width: 100%;
 }
 
 .btn-primary:hover {
-  background-color: var(--coral);
+  background-color: var(--rose-hover);
   transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(201, 100, 66, 0.2);
+  box-shadow: 0 10px 20px rgba(194, 112, 122, 0.3);
 }
 
 .btn-secondary {
   background-color: transparent;
   border: 1px solid var(--border-warm);
-  color: var(--charcoal-warm);
-  font-size: 0.8rem;
+  color: var(--dark-warm);
+  font-size: 0.85rem;
+  font-weight: 500;
   padding: 10px 20px;
 }
 
 .btn-secondary:hover:not(:disabled) {
   background-color: var(--warm-sand);
+  border-color: var(--charcoal-warm);
 }
 
 /* OUTPUT */
@@ -399,8 +415,9 @@ textarea.poetify-input:focus {
 .output-label {
   font-family: var(--font-serif);
   font-size: 1.75rem;
-  font-weight: 400;
+  font-weight: 600;
   font-style: italic;
+  color: var(--dark-warm);
 }
 
 .poetry-container {
@@ -414,10 +431,10 @@ textarea.poetify-input:focus {
 .poetry-output {
   font-family: var(--font-serif);
   font-size: clamp(1.2rem, 3.5vw, 1.4rem);
-  font-weight: 400;
-  line-height: 1.6;
+  font-weight: 500;
+  line-height: 1.7;
   white-space: pre-wrap;
-  color: var(--anthropic-black);
+  color: var(--dark-warm);
   text-align: left;
   width: 100%;
 }
@@ -426,12 +443,13 @@ textarea.poetify-input:focus {
   font-family: var(--font-sans);
   color: var(--stone-gray);
   font-style: italic;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
+  font-weight: 400;
 }
 
 /* FOOTER SECTION */
 .dark-section {
-  background: var(--anthropic-black);
+  background: var(--obsidian-dark);
   color: var(--warm-silver);
   padding: 120px 0;
   text-align: center;
@@ -441,7 +459,7 @@ textarea.poetify-input:focus {
   font-family: var(--font-serif);
   font-size: clamp(2rem, 5vw, 3rem);
   font-weight: 300;
-  color: #fff;
+  color: var(--soft-light);
   margin-bottom: 24px;
 }
 
@@ -449,7 +467,8 @@ textarea.poetify-input:focus {
   max-width: 600px;
   margin: 0 auto;
   font-size: 1.1rem;
-  font-weight: 200;
+  font-weight: 300;
+  color: var(--muted-lavender);
 }
 
 /* LOADER */
@@ -483,33 +502,138 @@ textarea.poetify-input:focus {
 
 /* RESPONSIVE ADJUSTMENTS FOR SMALLER SCREENS */
 @media (max-width: 768px) {
+  .logo {
+    font-size: 1.5rem;
+  }
+
+  .hero-subtitle {
+    font-size: 0.9rem;
+    padding: 0 10px;
+  }
+
   .card {
-    padding: 24px 20px;
+    padding: 20px 16px;
   }
 
   textarea.poetify-input {
     padding: 16px;
-    min-height: 160px;
+    min-height: 140px;
   }
 
   .btn {
+    padding: 14px 20px;
+  }
+
+  .btn-primary {
     padding: 16px 24px;
   }
 
   .app-grid {
     padding-bottom: 60px;
-    gap: 32px;
+    gap: 24px;
   }
 
   .dark-section {
-    padding: 60px 0;
+    padding: 48px 0;
   }
 
   .form-group {
-    margin-bottom: 24px;
+    margin-bottom: 20px;
   }
 
   .style-name {
     font-size: 1.2rem;
+  }
+
+  .output-header {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo {
+    font-size: 1.3rem;
+  }
+
+  .navbar {
+    padding: 20px 0;
+  }
+
+  .title-display {
+    font-size: clamp(1.8rem, 6vw, 2.5rem);
+    padding: 0 10px;
+  }
+
+  .hero-subtitle {
+    font-size: 0.8rem;
+    padding: 0 16px;
+  }
+
+  .card {
+    padding: 16px 12px;
+    border-radius: 16px;
+  }
+
+  textarea.poetify-input {
+    padding: 12px;
+    min-height: 120px;
+    font-size: 1rem;
+  }
+
+  .btn {
+    padding: 12px 16px;
+    font-size: 0.85rem;
+  }
+
+  .btn-primary {
+    padding: 14px 20px;
+  }
+
+  .btn-secondary {
+    padding: 8px 14px;
+    font-size: 0.75rem;
+  }
+
+  .app-grid {
+    padding-bottom: 48px;
+    gap: 20px;
+  }
+
+  .dark-section {
+    padding: 40px 0;
+  }
+
+  .title-card {
+    font-size: 1.6rem;
+  }
+
+  .dark-section p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .form-group {
+    margin-bottom: 16px;
+  }
+
+  .output-label {
+    font-size: 1.4rem;
+  }
+
+  .style-card {
+    padding: 12px;
+  }
+
+  .style-name {
+    font-size: 1.1rem;
+  }
+
+  .style-desc {
+    font-size: 0.7rem;
+  }
+
+  .output-header {
+    margin-bottom: 20px;
   }
 }
